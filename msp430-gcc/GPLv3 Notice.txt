@@ -1,0 +1,3 @@
+GPLv3 Components Contained within this Install
+
+This installation step is to inform you that there are some software components within the install that are licensed as GPLv3. Some of these software components are for development purposes only, and are intended to be removed before installing the application(s) code in your final product. For more information please refer to the software manifest for details on the Open Source licensing.

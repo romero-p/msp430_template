@@ -5,16 +5,16 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libcc1plugin.0.so'
+dlname='libcc1plugin.so.0'
 
 # Names of this library.
-library_names='libcc1plugin.0.so libcc1plugin.so'
+library_names='libcc1plugin.so.0.0.0 libcc1plugin.so.0 libcc1plugin.so'
 
 # The name of the static archive.
 old_library=''
 
 # Linker flags that can not go in dependency_libs.
-inherited_linker_flags=' '
+inherited_linker_flags=''
 
 # Libraries that this one depends upon.
 dependency_libs=''

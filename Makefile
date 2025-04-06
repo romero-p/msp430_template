@@ -62,7 +62,7 @@ create_build_dirs:
 	@$(foreach build_folder,$(BUILD_FOLDERS), mkdir -p $(build_folder))
 	@rm -Rf mkdir
 
-export LD_LIBRARY_PATH = $(MSP_FLASHER_PATH):$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$(MSP_FLASHER_PATH):$LD_LIBRARY_PATH
 
 flash: $(TARGET_APP).hex
 	@./flash.sh -n $(MSP_DEVICE) -w ../$(TARGET_APP).hex -v ../$(TARGET_APP).hex -z [VCC,RESET]

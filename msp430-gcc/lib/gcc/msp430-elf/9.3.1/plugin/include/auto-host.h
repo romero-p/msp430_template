@@ -275,7 +275,7 @@
 
 /* Define to 1 if `TIOCGWINSZ' requires <sys/ioctl.h>. */
 #ifndef USED_FOR_TARGET
-/* #undef GWINSZ_IN_SYS_IOCTL */
+#define GWINSZ_IN_SYS_IOCTL 1
 #endif
 
 
@@ -761,7 +761,7 @@
 /* Define to 1 if you have the declaration of `basename(const char*)', and to
    0 if you don't. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_BASENAME 0
+#define HAVE_DECL_BASENAME 1
 #endif
 
 
@@ -810,7 +810,7 @@
 /* Define to 1 if we found a declaration for 'fflush_unlocked', otherwise
    define to 0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_FFLUSH_UNLOCKED 0
+#define HAVE_DECL_FFLUSH_UNLOCKED 1
 #endif
 
 
@@ -823,14 +823,14 @@
 /* Define to 1 if we found a declaration for 'fgetc_unlocked', otherwise
    define to 0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_FGETC_UNLOCKED 0
+#define HAVE_DECL_FGETC_UNLOCKED 1
 #endif
 
 
 /* Define to 1 if we found a declaration for 'fgets_unlocked', otherwise
    define to 0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_FGETS_UNLOCKED 0
+#define HAVE_DECL_FGETS_UNLOCKED 1
 #endif
 
 
@@ -851,21 +851,21 @@
 /* Define to 1 if we found a declaration for 'fputc_unlocked', otherwise
    define to 0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_FPUTC_UNLOCKED 0
+#define HAVE_DECL_FPUTC_UNLOCKED 1
 #endif
 
 
 /* Define to 1 if we found a declaration for 'fputs_unlocked', otherwise
    define to 0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_FPUTS_UNLOCKED 0
+#define HAVE_DECL_FPUTS_UNLOCKED 1
 #endif
 
 
 /* Define to 1 if we found a declaration for 'fread_unlocked', otherwise
    define to 0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_FREAD_UNLOCKED 0
+#define HAVE_DECL_FREAD_UNLOCKED 1
 #endif
 
 
@@ -878,7 +878,7 @@
 /* Define to 1 if we found a declaration for 'fwrite_unlocked', otherwise
    define to 0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_FWRITE_UNLOCKED 0
+#define HAVE_DECL_FWRITE_UNLOCKED 1
 #endif
 
 
@@ -913,7 +913,7 @@
 /* Define to 1 if we found a declaration for 'getopt', otherwise define to 0.
    */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_GETOPT 1
+#define HAVE_DECL_GETOPT 0
 #endif
 
 
@@ -1080,7 +1080,7 @@
 /* Define to 1 if we found a declaration for 'strverscmp', otherwise define to
    0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_STRVERSCMP 0
+#define HAVE_DECL_STRVERSCMP 1
 #endif
 
 
@@ -1150,19 +1150,19 @@
 
 /* Define to 1 if you have the `fflush_unlocked' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_FFLUSH_UNLOCKED */
+#define HAVE_FFLUSH_UNLOCKED 1
 #endif
 
 
 /* Define to 1 if you have the `fgetc_unlocked' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_FGETC_UNLOCKED */
+#define HAVE_FGETC_UNLOCKED 1
 #endif
 
 
 /* Define to 1 if you have the `fgets_unlocked' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_FGETS_UNLOCKED */
+#define HAVE_FGETS_UNLOCKED 1
 #endif
 
 
@@ -1186,19 +1186,19 @@
 
 /* Define to 1 if you have the `fputc_unlocked' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_FPUTC_UNLOCKED */
+#define HAVE_FPUTC_UNLOCKED 1
 #endif
 
 
 /* Define to 1 if you have the `fputs_unlocked' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_FPUTS_UNLOCKED */
+#define HAVE_FPUTS_UNLOCKED 1
 #endif
 
 
 /* Define to 1 if you have the `fread_unlocked' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_FREAD_UNLOCKED */
+#define HAVE_FREAD_UNLOCKED 1
 #endif
 
 
@@ -1210,7 +1210,7 @@
 
 /* Define to 1 if you have the `fwrite_unlocked' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_FWRITE_UNLOCKED */
+#define HAVE_FWRITE_UNLOCKED 1
 #endif
 
 
@@ -1485,7 +1485,7 @@
 /* Define if the linker supports clearing hardware capabilities via mapfile.
    */
 #ifndef USED_FOR_TARGET
-#define HAVE_LD_CLEARCAP 1
+/* #undef HAVE_LD_CLEARCAP */
 #endif
 
 
@@ -1630,7 +1630,7 @@
 
 /* Define to 1 if you have the <malloc.h> header file. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_MALLOC_H */
+#define HAVE_MALLOC_H 1
 #endif
 
 
@@ -1666,7 +1666,7 @@
 
 /* Define if mmap of /dev/zero works. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_MMAP_DEV_ZERO */
+#define HAVE_MMAP_DEV_ZERO 1
 #endif
 
 
@@ -1843,7 +1843,7 @@
 
 /* Define to 1 if you have the <tr1/unordered_map> header file. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_TR1_UNORDERED_MAP */
+#define HAVE_TR1_UNORDERED_MAP 1
 #endif
 
 
@@ -1867,7 +1867,7 @@
 
 /* Define to 1 if you have the <unordered_map> header file. */
 #ifndef USED_FOR_TARGET
-#define HAVE_UNORDERED_MAP 1
+/* #undef HAVE_UNORDERED_MAP */
 #endif
 
 
@@ -1953,7 +1953,7 @@
 
 /* Define if int64_t uses long as underlying type. */
 #ifndef USED_FOR_TARGET
-/* #undef INT64_T_IS_LONG */
+#define INT64_T_IS_LONG 1
 #endif
 
 

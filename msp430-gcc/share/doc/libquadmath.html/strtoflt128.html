@@ -1,78 +1,111 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright (C) 2010-2019 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual. -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>strtoflt128 - GCC libquadmath</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GCC libquadmath">
-<meta name="generator" content="makeinfo 4.8">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="I_002fO-Library-Routines.html#I_002fO-Library-Routines" title="I/O Library Routines">
-<link rel="next" href="quadmath_005fsnprintf.html#quadmath_005fsnprintf" title="quadmath_snprintf">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GCC libquadmath: strtoflt128</title>
+
+<meta name="description" content="GCC libquadmath: strtoflt128">
+<meta name="keywords" content="GCC libquadmath: strtoflt128">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="I_002fO-Library-Routines.html#I_002fO-Library-Routines" rel="up" title="I/O Library Routines">
+<link href="quadmath_005fsnprintf.html#quadmath_005fsnprintf" rel="next" title="quadmath_snprintf">
+<link href="I_002fO-Library-Routines.html#I_002fO-Library-Routines" rel="previous" title="I/O Library Routines">
+<style type="text/css">
 <!--
-Copyright (C) 2010-2019 Free Software Foundation, Inc.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
 
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, with the Front-Cover Texts
-     being ``A GNU Manual,'' and with the Back-Cover Texts as in (a)
-     below.  A copy of the license is included in the section entitled
-     ``GNU Free Documentation License.''
 
-     (a) The FSF's Back-Cover Text is: ``You have the freedom to copy
-     and modify this GNU manual.
-   -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
 </head>
-<body>
-<div class="node">
-<p>
-<a name="strtoflt128"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="quadmath_005fsnprintf.html#quadmath_005fsnprintf">quadmath_snprintf</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="I_002fO-Library-Routines.html#I_002fO-Library-Routines">I/O Library Routines</a>
-<hr>
-</div>
 
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="strtoflt128"></a>
+<div class="header">
+<p>
+Next: <a href="quadmath_005fsnprintf.html#quadmath_005fsnprintf" accesskey="n" rel="next">quadmath_snprintf</a>, Up: <a href="I_002fO-Library-Routines.html#I_002fO-Library-Routines" accesskey="u" rel="up">I/O Library Routines</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="strtoflt128-_002d_002d_002d-Convert-from-string"></a>
 <h3 class="section">3.1 <code>strtoflt128</code> &mdash; Convert from string</h3>
 
 <p>The function <code>strtoflt128</code> converts a string into a
 <code>__float128</code> number.
+</p>
+<dl compact="compact">
+<dt>Syntax</dt>
+<dd><p><code>__float128 strtoflt128 (const char *s, char **sp)</code>
+</p>
+</dd>
+<dt><em>Arguments</em>:</dt>
+<dd><table>
+<tr><td width="15%"><var>s</var></td><td width="70%">input string</td></tr>
+<tr><td width="15%"><var>sp</var></td><td width="70%">the address of the next character in the string</td></tr>
+</table>
 
-     <dl>
-<dt>Syntax<dd><code>__float128 strtoflt128 (const char *s, char **sp)</code>
-
-     <br><dt><em>Arguments</em>:<dd>
-     <p><table summary=""><tr align="left"><td valign="top" width="15%"><var>s</var>  </td><td valign="top" width="70%">input string
-<br></td></tr><tr align="left"><td valign="top" width="15%"><var>sp</var> </td><td valign="top" width="70%">the address of the next character in the string
-     <br></td></tr></table>
-
-     <p>The argument <var>sp</var> contains, if not <code>NULL</code>, the address of the
+<p>The argument <var>sp</var> contains, if not <code>NULL</code>, the address of the
 next character following the parts of the string, which have been read.
+</p>
+</dd>
+<dt>Example</dt>
+<dd><div class="smallexample">
+<pre class="smallexample">#include &lt;quadmath.h&gt;
 
-     <br><dt>Example<dd>
-     <pre class="smallexample">          #include &lt;quadmath.h&gt;
-          
-          int main ()
-          {
-            __float128 r;
-          
-            r = strtoflt128 ("1.2345678", NULL);
-          
-            return 0;
-          }
-     </pre>
-     </dl>
+int main ()
+{
+  __float128 r;
 
-   </body></html>
+  r = strtoflt128 (&quot;1.2345678&quot;, NULL);
 
+  return 0;
+}
+</pre></div>
+</dd>
+</dl>
+
+
+
+
+
+</body>
+</html>

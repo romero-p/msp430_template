@@ -17,7 +17,7 @@ old_library='libssp.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/Users/msp430/msp430/buildbot/worker/worker/msp430-gnu-macos/build/msp430-gcc-9.3.1.11-source-full/build/gcc/msp430-elf/430/libgloss/libnosys -L/Users/msp430/msp430/buildbot/worker/worker/msp430-gnu-macos/build/msp430-gcc-9.3.1.11-source-full/gcc/libgloss/msp430'
+dependency_libs=' -L/home/buildbot/worker/worker/msp430-gnu-9_3_1-release/build/build/gcc/msp430-elf/430/libgloss/libnosys -L/home/buildbot/worker/worker/msp430-gnu-9_3_1-release/build/gcc/libgloss/msp430'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
