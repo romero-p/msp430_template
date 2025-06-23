@@ -31,12 +31,12 @@ BUILD_FOLDERS=$(dir $(OBJECTS))
 
 TARGET_APP=$(BUILD_DIR)/msp
 
-# default: create_build_dirs $(TARGET_APP).hex
-default: create_build_dirs $(TARGET_APP).elf
+default: create_build_dirs $(TARGET_APP).hex
+# default: create_build_dirs $(TARGET_APP).elf
 
-# $(TARGET_APP).hex: $(TARGET_APP).elf
-# 	@echo "OC		$@"
-# 	@$(CROSS_COMPILER)-objcopy --debugging -O ihex $< $@
+$(TARGET_APP).hex: $(TARGET_APP).elf
+	@echo "OC		$@"
+	@$(CROSS_COMPILER)-objcopy --debugging -O ihex $< $@
 
 $(TARGET_APP).elf: $(OBJECTS)
 	@echo "LD		$@"
@@ -68,14 +68,14 @@ create_build_dirs:
 	@$(foreach build_folder,$(BUILD_FOLDERS), mkdir -p $(build_folder))
 	@rm -Rf mkdir
 
-# export LD_LIBRARY_PATH = $(MSP_FLASHER_PATH):$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH = $(MSP_FLASHER_PATH):$LD_LIBRARY_PATH
 
-# flash: $(TARGET_APP).hex
-# 	@./flash.sh -n $(MSP_DEVICE) -w ../$(TARGET_APP).hex -v ../$(TARGET_APP).hex -z [VCC,RESET]
+flash: $(TARGET_APP).hex
+	@./flash.sh -n $(MSP_DEVICE) -w ../$(TARGET_APP).hex -v ../$(TARGET_APP).hex -z [VCC,RESET]
 
-flash: $(TARGET_APP).elf
-	@${MSP_DEBUG} tilib "prog ${TARGET_APP}.elf"
+# flash: $(TARGET_APP).elf
+# 	@${MSP_DEBUG} tilib "prog ${TARGET_APP}.elf"
 
-debug: clean create_build_dirs ${TARGET_APP}.elf
-	@${MSP_DEBUG} tilib "prog ${TARGET_APP}.elf"
-	@${MSP_DEBUG} tilib "gdb"
+# debug: clean create_build_dirs ${TARGET_APP}.elf
+# 	@${MSP_DEBUG} tilib "prog ${TARGET_APP}.elf"
+# 	@${MSP_DEBUG} tilib "gdb"

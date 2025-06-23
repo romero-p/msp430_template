@@ -2,7 +2,7 @@
 
 import serial
 
-DEVICE = '/dev/tty.usbmodem113203'
+DEVICE = '/dev/tty.usbmodem141403'
 ser = serial.Serial(DEVICE, timeout = 600)
 # ser = serial.Serial()
 # ser.port = DEVICE
