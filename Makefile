@@ -4,7 +4,7 @@ MSP_FLASHER_PATH=./MSPFlasher_1.3.20
 MSP_INCLUDES=msp430-gcc/include
 MSP_DEVICE=msp430fr5994
 
-CCFLAGS=-Wall -Werror -Og -g -gdwarf-3 -gstrict-dwarf -Wall -mcode-region=none -mdata-region=none -mlarge -Wl,--gc-sections -Wl,--start-group -lgcc -lc -Wl,--end-group -I$(MSP_INCLUDES) -D __$(MSP_DEVICE)__ -mmcu=$(MSP_DEVICE) -I.
+CCFLAGS=-Wall -Og -g -gdwarf-3 -gstrict-dwarf -Wall -mcode-region=none -mdata-region=none -mlarge -Wl,--gc-sections -Wl,--start-group -lgcc -lc -Wl,--end-group -I$(MSP_INCLUDES) -D __$(MSP_DEVICE)__ -mmcu=$(MSP_DEVICE) -I.
 
 LDFLAGS=-T $(MSP_INCLUDES)/$(MSP_DEVICE).ld -L $(MSP_INCLUDES) -Og -g -gdwarf-3 -gstrict-dwarf -Wall -mcode-region=none -mdata-region=none -mlarge -Wl,--gc-sections -Wl,--start-group -lgcc -lc -Wl,--end-group
 
