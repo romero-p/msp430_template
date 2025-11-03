@@ -23,19 +23,29 @@ int main(void) {
     P5DIR |= BIT0;   // set P5.0 as output
     P5OUT &= ~BIT0;  // clear P5.0
 
-    volatile unsigned count = 0;
-    volatile int x = 0;
-    volatile registerCheck = 0;
+    volatile uint16_t count = 0;
+    register unsigned src asm("r5") = 0x1234;
+    register unsigned dst asm("r6") = 0x0000;
+    const uint16_t runs = 1000; //Number of iterations for averaging
+    volatile uint16_t avg_cycles = 0;
 
     uartInitialize();                       // Initialize UART
 
     TA0CTL |= TASSEL__SMCLK | MC__CONTINOUS | TACLR; //Set up timer A with SMCKL as the clock source, continous mode and reset timer
 
     unsigned current_ts = TA0R; //Get the current value of the timer
-    __asm__("NOP"); //Instruction to measure
-    count = TA0R - current_ts; //Substract to get the difference in time aka the cycle count of the instruction
+    for(unsigned i = 0; i < runs; i++){
+           __asm__ __volatile__ (
+            "MOV %[s], %[d] \n" //Move the value from src to dst
+            : [d] "=r" (dst)        //Output operand
+            : [s] "r" (src)         //Input operand
+            );
+    };
 
-    send_uint(count); //Send the cycle count over UART
+    count = TA0R - current_ts; //Substract to get the difference in time aka the cycle count of the instruction
+    avg_cycles = count/runs; //Calculate average cycles
+    send_uint(dst);   //Send the value of dst over UART to verify the MOV instruction worked
+    send_uint(avg_cycles); //Send the cycle count over UART
 }
 
 // Function to send an unsigned integer over UART
