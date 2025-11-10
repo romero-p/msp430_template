@@ -23,29 +23,37 @@ int main(void) {
     P5DIR |= BIT0;   // set P5.0 as output
     P5OUT &= ~BIT0;  // clear P5.0
 
-    volatile uint16_t count = 0;
-    register unsigned src asm("r5") = 0x1234;
-    register unsigned dst asm("r6") = 0x0000;
-    const uint16_t runs = 1000; //Number of iterations for averaging
-    volatile uint16_t avg_cycles = 0;
+    register unsigned start_timer asm("r4"); //Stores the starting time of the benchmark
+    register unsigned end_timer asm("r5"); //Stores the ending time of the benchmark
+    register unsigned count asm("r6"); //Stores the cycle count of the benchmarked instruction
+    register unsigned r7 asm("r7");
+    register unsigned r8 asm("r8");
+    register unsigned r9 asm("r9"); 
 
     uartInitialize();                       // Initialize UART
 
     TA0CTL |= TASSEL__SMCLK | MC__CONTINOUS | TACLR; //Set up timer A with SMCKL as the clock source, continous mode and reset timer
 
     unsigned current_ts = TA0R; //Get the current value of the timer
-    for(unsigned i = 0; i < runs; i++){
-           __asm__ __volatile__ (
-            "MOV %[s], %[d] \n" //Move the value from src to dst
-            : [d] "=r" (dst)        //Output operand
-            : [s] "r" (src)         //Input operand
-            );
+    for(unsigned i = 0; i < 2; i++){
+        __asm__ __volatile__ (
+            //Clear timer and count registers
+            "mov #0, r4\n"
+            "mov #0, r5\n"
+            "mov #0, r6\n"
+            //Initialize registers for benchmarking
+            "mov #42, r7\n"
+            "mov #0, r8\n"
+            "mov #0, r9\n"
+
+            "mov &TA0R, r4\n" // Get start time
+            //benchmark_instruction
+            "mov &TA0R, r5\n" // Get end time
+        );
     };
 
-    count = TA0R - current_ts; //Substract to get the difference in time aka the cycle count of the instruction
-    avg_cycles = count/runs; //Calculate average cycles
-    send_uint(dst);   //Send the value of dst over UART to verify the MOV instruction worked
-    send_uint(avg_cycles); //Send the cycle count over UART
+    count = end_timer - start_timer; //Substract to get the difference in time aka the cycle count of the instruction
+    send_uint(count); //Send the cycle count over UART
 }
 
 // Function to send an unsigned integer over UART
