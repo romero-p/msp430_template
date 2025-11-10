@@ -1,5 +1,34 @@
 import subprocess
 import time
+import csv
+
+unroll_count = 10
+indent = " " * 12
+
+instructions = [
+    {"description": "NOP", "asm": "NOP"},
+    {"description": "ADD Rn, Rm", "asm": "ADD r7, r8"},
+    {"description": "ADD Rn, x(Rm)", "asm": "ADD r7, 4(r8)"},
+    {"description": "ADD @Rn, Rm", "asm": "ADD @r7, r8"},
+    {"description": "ADD @Rn, x(Rm)", "asm": "ADD @r7, 4(r8)"},
+    {"description": "ADD @Rn+, Rm", "asm": "ADD @r7+, r8"},
+    {"description": "ADD @Rn+, x(Rm)", "asm": "ADD @r7+, 4(r8)"},
+    {"description": "ADD #N, Rm", "asm": "ADD #0x1234, r8"},
+    {"description": "ADD #N, x(Rm)", "asm": "ADD #0x1234, 4(r8)"},
+    {"description": "ADD x(Rn), Rm", "asm": "ADD 4(r7), r8"},
+    {"description": "ADD x(Rn), x(Rm)", "asm": "ADD 4(r7), 4(r8)"},
+]
+
+# Generate the main.c file from the template
+with open("template.c", "r") as file:
+    template = file.read()
+    template = template.replace("UNROLL_COUNT", str(unroll_count))
+    benchmark_block = ""
+    for i in range(unroll_count):
+        benchmark_block += f'{indent}"{instructions[2]["asm"]}\\n"\n'
+    template = template.replace("BENCHMARK", benchmark_block.strip())
+with open("src/main.c", "w") as file:
+    file.write(template)
 
 # Start the UART script
 uart_process = subprocess.Popen(["python3", "-u", "uart.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)

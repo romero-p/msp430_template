@@ -46,22 +46,13 @@ int main(void) {
             "mov #0, r9\n"
 
             "mov &TA0R, r4\n" // Get start time
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
+            BENCHMARK
             "mov &TA0R, r5\n" // Get end time
         );
     };
 
     count = end_timer - start_timer; //Substract to get the difference in time aka the cycle count of the instruction
-    send_uint(count / 10); //Send the cycle count over UART
+    send_uint(count / UNROLL_COUNT); //Send the cycle count over UART
 }
 
 // Function to send an unsigned integer over UART
