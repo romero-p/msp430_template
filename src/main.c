@@ -34,7 +34,6 @@ int main(void) {
 
     TA0CTL |= TASSEL__SMCLK | MC__CONTINOUS | TACLR; //Set up timer A with SMCKL as the clock source, continous mode and reset timer
 
-    unsigned current_ts = TA0R; //Get the current value of the timer
     for(unsigned i = 0; i < 2; i++){
         __asm__ __volatile__ (
             //Clear timer and count registers
