@@ -46,16 +46,16 @@ int main(void) {
             "mov #0, r9\n"
 
             "mov &TA0R, r4\n" // Get start time
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
-            "ADD r7, 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
+            "ADD 4(r7), 4(r8)\n"
             "mov &TA0R, r5\n" // Get end time
         );
     };
@@ -68,9 +68,8 @@ int main(void) {
 // It converts the number to a string and sends each character
 void send_uint(unsigned int number) {
     char s[11] = {0};
-    s[10] = 0;
-    sprintf(s, "%u", number);
-    for (int i = 0; i < 10; i++) {
+    int len = sprintf(s, "%u", number);
+    for (int i = 0; i < len; i++) {
         send(s[i]);
     }
     send('\n');

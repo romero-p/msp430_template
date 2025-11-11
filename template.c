@@ -59,9 +59,8 @@ int main(void) {
 // It converts the number to a string and sends each character
 void send_uint(unsigned int number) {
     char s[11] = {0};
-    s[10] = 0;
-    sprintf(s, "%u", number);
-    for (int i = 0; i < 10; i++) {
+    int len = sprintf(s, "%u", number);
+    for (int i = 0; i < len; i++) {
         send(s[i]);
     }
     send('\n');
