@@ -4,7 +4,7 @@ import csv
 
 # User-configurable parameters
 unroll_count = 10 # Number of times to unroll each instruction
-benchmark_file = "add.py" # Benchmark file to use
+benchmark_file = "exp1.py" # Benchmark file to use
 
 # Constants
 indent = " " * 12
@@ -20,13 +20,15 @@ with open(csv_path, "w", newline='') as csvfile:
     csvwriter.writerow(["Instruction", "Cycle count", "Unroll count"])
 
     for instr in instructions:
+        asm_list = instr["asm"] if isinstance(instr["asm"], list) else [instr["asm"]]
         # Generate the main.c file from the template
         with open("template.c", "r") as file:
             template = file.read()
             template = template.replace("UNROLL_COUNT", str(unroll_count))
             benchmark_block = ""
             for i in range(unroll_count):
-                benchmark_block += f'{indent}"{instr["asm"]}\\n"\n'
+                for line in asm_list:
+                    benchmark_block += f'{indent}"{line}\\n"\n'
             template = template.replace("BENCHMARK", benchmark_block.strip())
         with open("src/main.c", "w") as file:
             file.write(template)
