@@ -1,0 +1,12 @@
+Instruction,Cycle count,Unroll count
+NOP,1,10
+"ADD Rn, Rm",1,10
+"ADD Rn, x(Rm)",4,10
+"ADD @Rn, Rm",2,10
+"ADD @Rn, x(Rm)",5,10
+"ADD @Rn+, Rm",2,10
+"ADD @Rn+, x(Rm)",5,10
+"ADD #N, Rm",2,10
+"ADD #N, x(Rm)",5,10
+"ADD x(Rn), Rm",3,10
+"ADD x(Rn), x(Rm)",6,10

@@ -2,29 +2,24 @@ import subprocess
 import time
 import csv
 
-unroll_count = 10
+# User-configurable parameters
+unroll_count = 10 # Number of times to unroll each instruction
+benchmark_file = "add.py" # Benchmark file to use
+
+# Constants
 indent = " " * 12
+benchmark_path = f"benchmarks/{benchmark_file}"
+benchmark_description = benchmark_file.replace(".py", "")
+csv_path = f"results/{benchmark_description}.csv"
+# Import the instructions from the benchmark file
+benchmark_module = __import__(f"benchmarks.{benchmark_description}", fromlist=['instructions'])
+instructions = benchmark_module.instructions
 
-instructions = [
-    {"description": "NOP", "asm": "NOP"},
-    {"description": "ADD Rn, Rm", "asm": "ADD r7, r8"},
-    {"description": "ADD Rn, x(Rm)", "asm": "ADD r7, 4(r8)"},
-    {"description": "ADD @Rn, Rm", "asm": "ADD @r7, r8"},
-    {"description": "ADD @Rn, x(Rm)", "asm": "ADD @r7, 4(r8)"},
-    {"description": "ADD @Rn+, Rm", "asm": "ADD @r7+, r8"},
-    {"description": "ADD @Rn+, x(Rm)", "asm": "ADD @r7+, 4(r8)"},
-    {"description": "ADD #N, Rm", "asm": "ADD #0x1234, r8"},
-    {"description": "ADD #N, x(Rm)", "asm": "ADD #0x1234, 4(r8)"},
-    {"description": "ADD x(Rn), Rm", "asm": "ADD 4(r7), r8"},
-    {"description": "ADD x(Rn), x(Rm)", "asm": "ADD 4(r7), 4(r8)"},
-]
-
-with open("results.csv", "w", newline='') as csvfile:
+with open(csv_path, "w", newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
     csvwriter.writerow(["Instruction", "Cycle count", "Unroll count"])
 
     for instr in instructions:
-
         # Generate the main.c file from the template
         with open("template.c", "r") as file:
             template = file.read()
