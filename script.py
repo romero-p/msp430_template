@@ -4,7 +4,7 @@ import csv
 
 # User-configurable parameters
 unroll_count = 10 # Number of times to unroll each instruction
-benchmark_file = "exp1.py" # Benchmark file to use
+benchmark_file = "add.py" # Benchmark file to use
 
 # Constants
 indent = " " * 12

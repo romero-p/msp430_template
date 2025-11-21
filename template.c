@@ -32,6 +32,9 @@ int main(void) {
     register unsigned r10 asm("r10");
     register unsigned r11 asm("r11");
     register unsigned r12 asm("r12");
+    register unsigned r13 asm("r13");
+    register unsigned r14 asm("r14");
+    register unsigned r15 asm("r15");
 
     uartInitialize();                       // Initialize UART
 
@@ -50,6 +53,9 @@ int main(void) {
             "mov #2, r10\n"
             "mov #3, r11\n"
             "mov #4, r12\n"
+            "mov #5, r13\n"
+            "mov #6, r14\n"
+            "mov #7, r15\n"
 
             "mov &TA0R, r4\n" // Get start time
             BENCHMARK

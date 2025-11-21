@@ -28,7 +28,13 @@ int main(void) {
     register unsigned count asm("r6"); //Stores the cycle count of the benchmarked instruction
     register unsigned r7 asm("r7");
     register unsigned r8 asm("r8");
-    register unsigned r9 asm("r9"); 
+    register unsigned r9 asm("r9");
+    register unsigned r10 asm("r10");
+    register unsigned r11 asm("r11");
+    register unsigned r12 asm("r12");
+    register unsigned r13 asm("r13");
+    register unsigned r14 asm("r14");
+    register unsigned r15 asm("r15");
 
     uartInitialize();                       // Initialize UART
 
@@ -43,7 +49,13 @@ int main(void) {
             //Initialize registers for benchmarking
             "mov #42, r7\n"
             "mov #0, r8\n"
-            "mov #0, r9\n"
+            "mov #1, r9\n"
+            "mov #2, r10\n"
+            "mov #3, r11\n"
+            "mov #4, r12\n"
+            "mov #5, r13\n"
+            "mov #6, r14\n"
+            "mov #7, r15\n"
 
             "mov &TA0R, r4\n" // Get start time
             "ADD 4(r7), 4(r8)\n"
