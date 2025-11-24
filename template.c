@@ -25,7 +25,7 @@ int main(void) {
 
     register unsigned start_timer asm("r4"); //Stores the starting time of the benchmark
     register unsigned end_timer asm("r5"); //Stores the ending time of the benchmark
-    register unsigned count asm("r6"); //Stores the cycle count of the benchmarked instruction
+    register unsigned count asm("r6"); //Stores the cycle count of the benchmark
     register unsigned r7 asm("r7");
     register unsigned r8 asm("r8");
     register unsigned r9 asm("r9");
@@ -63,7 +63,7 @@ int main(void) {
         );
     };
 
-    count = end_timer - start_timer; //Substract to get the difference in time aka the cycle count of the instruction
+    count = end_timer - start_timer; //Substract to get the difference in time aka the cycle count of the benchmark
     send_uint(count); //Send the cycle count over UART
 }
 
