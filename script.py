@@ -4,20 +4,20 @@ import csv
 
 # User-configurable parameters
 unroll_count = 10 # Number of times to unroll each instruction
-benchmark_file = "add.py" # Benchmark file to use
+benchmark_file = "mov.py" # Benchmark file to use
 
 # Constants
 indent = " " * 12
 benchmark_path = f"benchmarks/{benchmark_file}"
 benchmark_description = benchmark_file.replace(".py", "")
-csv_path = f"results/{benchmark_description}.csv"
+csv_path = f"results/{benchmark_description}_unroll{unroll_count}_{int(time.time())}.csv"
 # Import the instructions from the benchmark file
 benchmark_module = __import__(f"benchmarks.{benchmark_description}", fromlist=['instructions'])
 instructions = benchmark_module.instructions
 
 with open(csv_path, "w", newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
-    csvwriter.writerow(["Instruction", "Cycle count", "Unroll count"])
+    csvwriter.writerow(["Instruction", "Cycle count", "Unroll count", "Cycles per benchmark"])
 
     for instr in instructions:
         asm_list = instr["asm"] if isinstance(instr["asm"], list) else [instr["asm"]]
@@ -51,4 +51,4 @@ with open(csv_path, "w", newline='') as csvfile:
         # Terminate the UART process
         uart_process.terminate()
 
-        csvwriter.writerow([instr["description"], cycle_count, unroll_count])
+        csvwriter.writerow([instr["description"], cycle_count, unroll_count, (int(cycle_count)-3) / unroll_count])

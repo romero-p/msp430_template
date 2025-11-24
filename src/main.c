@@ -38,7 +38,7 @@ int main(void) {
 
     uartInitialize();                       // Initialize UART
 
-    TA0CTL |= TASSEL__SMCLK | MC__CONTINOUS | TACLR; //Set up timer A with SMCKL as the clock source, continous mode and reset timer
+    TA0CTL |= TASSEL__SMCLK | MC__CONTINOUS | TACLR; //Set up timer A with SMCKL as th
 
     for(unsigned i = 0; i < 2; i++){
         __asm__ __volatile__ (
@@ -47,7 +47,7 @@ int main(void) {
             "mov #0, r5\n"
             "mov #0, r6\n"
             //Initialize registers for benchmarking
-            "mov #42, r7\n"
+            "mov #0, r7\n"
             "mov #0, r8\n"
             "mov #1, r9\n"
             "mov #2, r10\n"
@@ -58,22 +58,22 @@ int main(void) {
             "mov #7, r15\n"
 
             "mov &TA0R, r4\n" // Get start time
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
-            "ADD 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
+            "MOV 4(r7), 4(r8)\n"
             "mov &TA0R, r5\n" // Get end time
         );
     };
 
     count = end_timer - start_timer; //Substract to get the difference in time aka the cycle count of the instruction
-    send_uint(count / 10); //Send the cycle count over UART
+    send_uint(count); //Send the cycle count over UART
 }
 
 // Function to send an unsigned integer over UART
